@@ -46,8 +46,9 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit() { 
     if (this.userForm.valid && this.userId) {
+      
       this.usersService
         .updateUser(this.userId, this.userForm.value)
         .subscribe(() => {

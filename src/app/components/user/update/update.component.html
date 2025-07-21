@@ -1,0 +1,47 @@
+<div class="max-w-md mx-auto p-4">
+  <h2 class="text-xl font-bold mb-4">Editar Usuario</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block mb-1">Nombre</label>
+      <input class="w-full border rounded px-2 py-1" formControlName="name" />
+      <div
+        *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched"
+        class="text-red-500 text-sm"
+      >
+        El nombre es requerido
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="block mb-1">Email</label>
+      <input class="w-full border rounded px-2 py-1" formControlName="email" />
+      <div
+        *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+        class="text-red-500 text-sm"
+      >
+        Email inválido
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="block mb-1">Usuario</label>
+      <input
+        class="w-full border rounded px-2 py-1"
+        formControlName="username"
+      />
+      <div
+        *ngIf="
+          userForm.get('username')?.invalid && userForm.get('username')?.touched
+        "
+        class="text-red-500 text-sm"
+      >
+        El usuario es requerido
+      </div>
+    </div>
+    <button
+      class="bg-yellow-500 text-white px-4 py-2 rounded"
+      type="submit"
+      [disabled]="userForm.invalid"
+    >
+      Guardar Cambios
+    </button>
+  </form>
+</div>

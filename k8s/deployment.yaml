@@ -12,6 +12,8 @@ spec:
       labels:
         app: angular-app
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
         - name: angular-container
           image: guxx11/angular-crud:latest

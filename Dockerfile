@@ -1,4 +1,4 @@
-# Dockerfile
+# Etapa 1: build de Angular
 FROM node:20-alpine AS build
 
 WORKDIR /app
@@ -7,9 +7,15 @@ COPY package*.json ./
 RUN npm install --legacy-peer-deps
 
 COPY . .
-
 RUN npm run build --prod
 
-# Etapa final: usar Nginx para servir la app Angular
+# Etapa 2: nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/angular-crud /usr/share/nginx/html
+
+# Eliminar contenido por defecto de Nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copiar el build de Angular al servidor Nginx
+COPY --from=build /app/dist/angular-crud/browser /usr/share/nginx/html
+
+EXPOSE 80
